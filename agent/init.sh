@@ -1,6 +1,13 @@
 #!/bin/bash
 set -euo pipefail
 
+if [ -f /opt/agent/config.json ]
+then
+    cd /opt/agent
+    exec python3 ./agent.zip 
+    exit 1
+fi
+
 rm -rf /opt/agent
 mkdir -p /opt/agent
 cd /opt/agent

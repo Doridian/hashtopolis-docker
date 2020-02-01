@@ -1,16 +1,14 @@
-# FROM nvidia/cuda:10.0-cudnn7-runtime
-FROM nvidia/opencl:devel-ubuntu16.04
+# FROM nvidia/cuda:10.1-runtime
+FROM nvidia/opencl:devel-ubuntu18.04
 
 RUN apt update && \
-    apt -y dist-upgrade && \
-    apt -y install git python3 python3-pip python3-setuptools curl jq pciutils p7zip clinfo ocl-icd-libopencl1 \
-                   wget p7zip make build-essential git libcurl4-openssl-dev libssl-dev zlib1g-dev
+    apt -y dist-upgrade
 
-WORKDIR /opt
-RUN git clone https://github.com/s3inlc/hashtopolis-agent-python.git
+RUN apt -y install --no-install-recommends \
+                   python3 python3-requests python3-psutil \
+                   curl jq pciutils p7zip wget ca-certificates
 
-WORKDIR /opt/hashtopolis-agent-python
-RUN pip3 install -r requirements.txt
+RUN apt clean
 
 COPY init.sh /init.sh
 #ENTRYPOINT ["/init.sh"]

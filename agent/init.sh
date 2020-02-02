@@ -1,6 +1,10 @@
 #!/bin/bash
 set -euo pipefail
 
+BASE_URL="$1"
+KEYTYPE="$2"
+KEYVALUE="$3"
+
 mkdir -p /opt/agent
 cd /opt/agent
 rm -f ./agent.zip
@@ -8,13 +12,9 @@ wget "$BASE_URL/agents.php?download=1" -O ./agent.zip
 
 if [ -f /opt/agent/config.json ]
 then
-    exec python3 ./agent.zip 
+    exec python3 ./agent.zip
     exit 1
 fi
-
-BASE_URL="$1"
-KEYTYPE="$2"
-KEYVALUE="$3"
 
 case "$KEYTYPE" in
     v*|V*)

@@ -1,14 +1,16 @@
-# FROM nvidia/cuda:10.1-runtime
+ FROM nvidia/cuda:10.0-devel
 # FROM nvidia/opencl:devel-ubuntu18.04
+# FROM ubuntu:18.04
 
-FROM ubuntu:18.04
+RUN apt update && \
+    apt -y dist-upgrade
+
 
 LABEL com.nvidia.volumes.needed="nvidia_driver"
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt install -y --no-install-recommends \
         ocl-icd-libopencl1 \
-        clinfo && \
-    rm -rf /var/lib/apt/lists/*
+        clinfo
 
 RUN mkdir -p /etc/OpenCL/vendors && \
     echo "libnvidia-opencl.so.1" > /etc/OpenCL/vendors/nvidia.icd
@@ -25,10 +27,6 @@ ENV NVIDIA_DRIVER_CAPABILITIES compute,utility
 
 
 
-
-
-RUN apt update && \
-    apt -y dist-upgrade
 
 RUN apt -y install --no-install-recommends \
                    python3 python3-requests python3-psutil \

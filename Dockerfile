@@ -35,7 +35,7 @@ ENV BASE_URL https://hashtopolis.example.com
 ENV KEY_TYPE voucher
 ENV KEY_VALUE abcdefg
 
-VOLUME /opt/agetn
+VOLUME /opt/agent
 
 COPY init.sh /init.sh
 ENTRYPOINT ["/init.sh"]

@@ -8,6 +8,7 @@ wget "$BASE_URL/agents.php?download=1" -O ./agent.zip
 
 if [ -f /opt/agent/config.json ]
 then
+    rm -f ./lock.pid
     exec python3 ./agent.zip
     exit 1
 fi

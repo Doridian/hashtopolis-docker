@@ -27,7 +27,7 @@ ENV NVIDIA_DRIVER_CAPABILITIES compute,utility
 RUN apt -y install --no-install-recommends \
                    python3 python3-requests python3-psutil \
                    curl jq pciutils p7zip wget ca-certificates \
-                   p7zip-full p7zip-rar
+                   p7zip p7zip-full p7zip-rar
 
 RUN apt clean
 

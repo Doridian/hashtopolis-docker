@@ -25,4 +25,5 @@ case "$KEY_TYPE" in
         ;;
 esac
 
+rm -f ./lock.pid
 exec python3 ./agent.zip  --voucher "$VOUCHER" --url "$BASE_URL/api/server.php"

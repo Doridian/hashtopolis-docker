@@ -1,10 +1,6 @@
 #!/bin/bash
 set -euo pipefail
 
-BASE_URL="$1"
-KEYTYPE="$2"
-KEYVALUE="$3"
-
 mkdir -p /opt/agent
 cd /opt/agent
 rm -f ./agent.zip
@@ -16,15 +12,15 @@ then
     exit 1
 fi
 
-case "$KEYTYPE" in
+case "$KEY_TYPE" in
     v*|V*)
-        VOUCHER="$KEYVALUE"
+        VOUCHER="$KEY_VALUE"
         ;;
     a*|A*)
-        VOUCHER="$(curl -v "$BASE_URL/api/user.php" -H 'Content-Type: application/json' --data-binary "{\"section\":\"agent\",\"request\":\"createVoucher\",\"accessKey\":\"$KEYVALUE\"}" | jq -r .voucher)"
+        VOUCHER="$(curl -v "$BASE_URL/api/user.php" -H 'Content-Type: application/json' --data-binary "{\"section\":\"agent\",\"request\":\"createVoucher\",\"accessKey\":\"$KEY_VALUE\"}" | jq -r .voucher)"
         ;;
     *)
-        echo "Invalid key type $KEYTYPE"
+        echo "Invalid key type $KEY_TYPE"
         exit 1
         ;;
 esac

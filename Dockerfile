@@ -1,10 +1,9 @@
- FROM nvidia/cuda:10.0-devel
+ FROM nvidia/cuda:12.2.2-devel-ubuntu22.04
 # FROM nvidia/opencl:devel-ubuntu18.04
 # FROM ubuntu:18.04
 
 RUN apt update && \
     apt -y dist-upgrade
-
 
 LABEL com.nvidia.volumes.needed="nvidia_driver"
 
@@ -25,14 +24,17 @@ ENV LD_LIBRARY_PATH /usr/local/nvidia/lib:/usr/local/nvidia/lib64:${LD_LIBRARY_P
 ENV NVIDIA_VISIBLE_DEVICES all
 ENV NVIDIA_DRIVER_CAPABILITIES compute,utility
 
-
-
-
 RUN apt -y install --no-install-recommends \
                    python3 python3-requests python3-psutil \
                    curl jq pciutils p7zip wget ca-certificates
 
 RUN apt clean
 
+ENV BASE_URL https://hashtopolis.example.com
+ENV KEY_TYPE voucher
+ENV KEY_VALUE abcdefg
+
+VOLUME /opt/agetn
+
 COPY init.sh /init.sh
-#ENTRYPOINT ["/init.sh"]
+ENTRYPOINT ["/init.sh"]

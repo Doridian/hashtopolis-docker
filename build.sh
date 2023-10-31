@@ -1,7 +1,12 @@
-docker build -t ghcr.io/doridian/hashtopolis-docker:cuda .
-docker push ghcr.io/doridian/hashtopolis-docker:cuda
+#!/bin/sh
+set -e
 
-docker build -t doridian/hashtopolis-docker-agent:opencl .
-docker push doridian/hashtopolis-docker-agent:opencl
+buildver() {
+    cat Dockerfile.template | sed "s/__CUDA_VERSION__/$1/g" > Dockerfile
+    docker build --platform=linux/amd64 -t "ghcr.io/doridian/hashtopolis-docker/agent:cuda-$1" .
+    docker push "ghcr.io/doridian/hashtopolis-docker/agent:cuda-$1"
+}
 
-docker run --rm -it doridian/hashtopolis-docker-agent:opencl
+buildver 12.2.2
+buildver 12.1.1
+buildver 12.0.1

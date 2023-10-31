@@ -1,4 +1,4 @@
- FROM nvidia/cuda:12.0.1-devel-ubuntu22.04
+ FROM nvidia/cuda:12.2.2-devel-ubuntu22.04
 # FROM nvidia/opencl:devel-ubuntu18.04
 # FROM ubuntu:18.04
 

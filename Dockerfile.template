@@ -10,7 +10,9 @@ RUN apt update && \
 RUN apt -y install --no-install-recommends \
                    python3 python3-requests python3-psutil \
                    curl jq pciutils p7zip wget ca-certificates \
-                   p7zip p7zip-full p7zip-rar
+                   p7zip p7zip-full p7zip-rar \
+                   pocl-opencl-icd
+
 RUN apt clean
 
 ENV BASE_URL https://hashtopolis.example.com

@@ -10,7 +10,7 @@ RUN apt update && \
 RUN apt -y install --no-install-recommends \
                    python3 python3-requests python3-psutil \
                    curl jq pciutils p7zip wget ca-certificates \
-                   p7zip p7zip-full p7zip-rar
+                   p7zip p7zip-full p7zip-rar gnupg
 
 RUN apt clean
 
@@ -25,7 +25,12 @@ ENTRYPOINT ["/init.sh"]
 
 FROM base AS cpu
 
-RUN apt -y install --no-install-recommends ocl-icd-libopencl1 clinfo pocl-opencl-icd
+RUN wget -O- https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB | gpg --dearmor \
+        | tee /usr/share/keyrings/oneapi-archive-keyring.gpg
+RUN echo "deb [signed-by=/usr/share/keyrings/oneapi-archive-keyring.gpg] https://apt.repos.intel.com/oneapi all main" \
+        | tee /etc/apt/sources.list.d/oneAPI.list
+RUN apt update
+RUN apt -y install --no-install-recommends intel-oneapi-runtime-opencl intel-oneapi-runtime-libs clinfo
 RUN apt clean
 
 FROM base AS cuda

@@ -24,7 +24,7 @@ ENTRYPOINT ["/init.sh"]
 
 FROM base AS cuda
 
-RUN apt -y instal --no-install-recommends ocl-icd-libopencl1 clinfo
+RUN apt -y install --no-install-recommends ocl-icd-libopencl1 clinfo
 RUN apt clean
 
 LABEL com.nvidia.volumes.needed="nvidia_driver"

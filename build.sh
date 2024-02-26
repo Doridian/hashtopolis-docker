@@ -23,11 +23,11 @@ buildcuda() {
     done
 }
 
-#buildcuda 12.3.1 12.3 12 latest
-#buildcuda 12.2.2 12.2
+buildcuda 12.3.1 12.3 12 latest
+buildcuda 12.2.2 12.2
 #buildcuda 12.1.1 12.1
 #buildcuda 12.0.1 12.0
 
-#buildver rocm/dev-ubuntu-22.04 rocm base
+buildver rocm/dev-ubuntu-22.04 rocm base
 
 buildver ubuntu:22.04 cpu cpu

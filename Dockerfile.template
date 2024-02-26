@@ -1,4 +1,4 @@
- FROM nvidia/cuda:__CUDA_VERSION__-devel-ubuntu22.04
+ FROM __IMAGE_VERSION__
 # FROM nvidia/opencl:devel-ubuntu18.04
 # FROM ubuntu:18.04
 

@@ -25,7 +25,7 @@ ENTRYPOINT ["/init.sh"]
 
 FROM base AS cpu
 
-RUN apt -y install --no-install-recommends pocl-opencl-icd
+RUN apt -y install --no-install-recommends ocl-icd-libopencl1 clinfo pocl-opencl-icd
 RUN apt clean
 
 FROM base AS cuda

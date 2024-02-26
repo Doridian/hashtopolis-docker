@@ -10,8 +10,7 @@ RUN apt update && \
 RUN apt -y install --no-install-recommends \
                    python3 python3-requests python3-psutil \
                    curl jq pciutils p7zip wget ca-certificates \
-                   p7zip p7zip-full p7zip-rar \
-                   pocl-opencl-icd
+                   p7zip p7zip-full p7zip-rar
 
 RUN apt clean
 
@@ -23,6 +22,11 @@ VOLUME /opt/agent
 
 COPY init.sh /init.sh
 ENTRYPOINT ["/init.sh"]
+
+FROM base AS cpu
+
+RUN apt -y install --no-install-recommends pocl-opencl-icd
+RUN apt clean
 
 FROM base AS cuda
 

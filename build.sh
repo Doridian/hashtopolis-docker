@@ -6,6 +6,7 @@ buildver() {
     TAGVER="$2"
     TRG="$3"
     cat Dockerfile.template | sed "s~__IMAGE_VERSION__~$VER~g" > Dockerfile
+    docker pull --platform=linux/amd64 "$VER"
     docker build --platform=linux/amd64 --target="$TRG" -t "ghcr.io/doridian/hashtopolis-docker/agent:$TAGVER" .
     docker push "ghcr.io/doridian/hashtopolis-docker/agent:$TAGVER"
 }

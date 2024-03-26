@@ -3,13 +3,16 @@ set -euo pipefail
 
 mkdir -p /opt/agent
 cd /opt/agent
-rm -f ./agent.zip
-wget "$BASE_URL/agents.php?download=1" -O ./agent.zip
+
+if [ ! -f ./hashtopolis.zip ]
+then
+    wget "$BASE_URL/agents.php?download=1" -O ./hashtopolis.zip
+fi
 
 if [ -f /opt/agent/config.json ]
 then
     rm -f ./lock.pid
-    exec python3 ./agent.zip
+    exec python3 ./hashtopolis.zip
     exit 1
 fi
 
@@ -27,4 +30,4 @@ case "$KEY_TYPE" in
 esac
 
 rm -f ./lock.pid
-exec python3 ./agent.zip  --voucher "$VOUCHER" --url "$BASE_URL/api/server.php"
+exec python3 ./hashtopolis.zip  --voucher "$VOUCHER" --url "$BASE_URL/api/server.php"

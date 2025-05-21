@@ -1,8 +1,8 @@
  FROM __IMAGE_VERSION__ AS base
  USER root
 
-# FROM nvidia/opencl:devel-ubuntu18.04
-# FROM ubuntu:18.04
+# FROM nvidia/opencl:devel-ubuntu24.04
+# FROM ubuntu:24.04
 
 RUN apt update && \
     apt -y dist-upgrade

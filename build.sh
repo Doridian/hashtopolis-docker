@@ -15,7 +15,7 @@ buildcuda() {
     CUDAVER="$1"
     shift 1
 
-    buildver "nvidia/cuda:$CUDAVER-devel-ubuntu22.04" "cuda-$CUDAVER" cuda
+    buildver "nvidia/cuda:$CUDAVER-devel-ubuntu24.04" "cuda-$CUDAVER" cuda
 
     for var in "$@"
     do
@@ -24,11 +24,11 @@ buildcuda() {
     done
 }
 
-buildcuda 12.3.2 12.3 12 latest
-buildcuda 12.2.2 12.2
+buildcuda 12.9.0 12.9 12 latest
+#buildcuda 12.2.2 12.2
 #buildcuda 12.1.1 12.1
 #buildcuda 12.0.1 12.0
 
-#buildver rocm/dev-ubuntu-22.04 rocm base
+#buildver rocm/dev-ubuntu-24.04 rocm base
 
-buildver ubuntu:22.04 cpu cpu
+buildver ubuntu:24.04 cpu cpu

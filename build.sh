@@ -24,7 +24,8 @@ buildcuda() {
     done
 }
 
-buildcuda 12.8.1 12.8 12 latest
+buildcuda 12.9.1 12.9 12 latest
+#buildcuda 12.8.1 12.8
 #buildcuda 12.2.2 12.2
 #buildcuda 12.1.1 12.1
 #buildcuda 12.0.1 12.0
